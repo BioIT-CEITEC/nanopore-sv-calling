@@ -1,24 +1,27 @@
 {
     "workflow_description": {
-      "name":"nanopore_workflows",
+      "name":"nanopore_sv_calling",
       "version": 1.0,
-      "label":"Basecalling, alignment, and SV calling",
-      "type":"run_demultiplexing",
-      "inputs":"{run_dir}/*",
+      "label":"Structural variant calling",
+      "type":"structural_variant_calling",
+      "inputs":[
+        "sequencing_data/{sample}*.bam"
+      ],
       "outputs":[
-        "raw_fastq/{sample}*fastq*"
+        "SV_calling/{sample}*.vcf"
+      ],
+      "report_index": "qc_reports/all_samples/nanopore_SV_qc.html",
+      "reports":[
+        "qc_reports/all_samples/nanopore_SV_qc.html"
       ],
       "run_parameters": {
         "cpu": 30,
         "memory": 128
-      },
-      "run_outputs":[
-        "{library}/sequencing_run_info/*"
-      ]
+      }
     },
     "general_params": [
-      "sample_name",
-      "run_dir"
+      "entity_name",
+      "sample_name"
     ],
     "gui_params" : {
       "primary": {
