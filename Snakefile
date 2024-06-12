@@ -1,18 +1,31 @@
 from pathlib import Path
 configfile: "config.json"
 GLOBAL_REF_PATH = config["globalResources"] 
-GLOBAL_TMPD_PATH = config["globalTmpdPath"]
 
-#reference_directory = os.path.join(GLOBAL_REF_PATH,config["organism"],config["reference"])
 ref_type = list(config["libraries"].values())[0]["reference"]
-#TODO how to get organism
 reference_path = os.path.join(GLOBAL_REF_PATH, "homo_sapiens", ref_type, "seq", ref_type + ".fa")
-basecaller_location = os.path.join(GLOBAL_TMPD_PATH, "ont-guppy-cpu/bin/guppy_basecaller")
 
-include: "rules/rules.smk"
+library_name = list(config["libraries"].keys())[0]
+sample_hashes = list(config["libraries"][library_name]["samples"].keys())
+
+sample_names = []
+for sample in sample_hashes:
+    sample_name = config["libraries"][library_name]["samples"][sample]["sample_name"]
+    sample_names.append(sample_name)
 
 rule all:
     input:
-        expand("outputs/sv_calling/{library_name}/variants.vcf", library_name = config["run_dir"])
-        #expand("outputs/alignment/{library_name}/minimap2/reads-align.genome.sorted.bam", library_name = config["run_dir"])
-        #expand("outputs/basecalling/{library_name}/guppy/sequencing_summary.txt", library_name = config["run_dir"])
+        expand("{library_name}/SV_calling/{sample_name}/{sample_name}.vcf", library_name = library_name, sample_name = sample_names)
+
+rule SV_calling:
+    input: 
+        bam = '{library_name}/aligned/{sample_name}/{sample_name}.bam'
+    output:
+        vcf = 'SV_calling/{sample}/{sample}.vcf'
+    params: reference_path = reference_path,
+    conda: 
+        "../envs/svim_environment.yaml"
+    shell:
+        """
+        svim alignment outputs/{wildcards.library_name}sv_calling/ {input.bam} {params.reference_path} 
+        """

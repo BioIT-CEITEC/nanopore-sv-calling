@@ -5,10 +5,10 @@
       "label":"Structural variant calling",
       "type":"structural_variant_calling",
       "inputs":[
-        "sequencing_data/{sample}*.bam"
+        "aligned/{sample}/{sample}.bam"
       ],
       "outputs":[
-        "SV_calling/{sample}*.vcf"
+        "SV_calling/{sample}/{sample}.vcf"
       ],
       "report_index": "qc_reports/all_samples/nanopore_SV_qc.html",
       "reports":[
