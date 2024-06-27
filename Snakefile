@@ -1,4 +1,6 @@
 from pathlib import Path
+import pandas as pd
+
 configfile: "config.json"
 GLOBAL_REF_PATH = config["globalResources"] 
 
@@ -8,7 +10,7 @@ module BR:
     config: config
 
 use rule * from BR as other_*
-config = BR.load_organism()¨
+config = BR.load_organism()
 
 # setting organism from reference
 f = open(os.path.join(GLOBAL_REF_PATH,"reference_info","reference2.json"),)
@@ -23,32 +25,26 @@ if len(config["species_name"].split(" (")) > 1:
 ##### Config processing #####
 # Folders
 #
+sample_tab = pd.DataFrame.from_dict(config["samples"],orient="index")
 reference_path = os.path.join(GLOBAL_REF_PATH,config["organism"], config["reference"], "seq", config["reference"] + ".fa")
-
-library_name = list(config["libraries"].keys())[0]
-sample_hashes = list(config["libraries"][library_name]["samples"].keys())
-
-sample_names = []
-for sample in sample_hashes:
-    sample_name = config["libraries"][library_name]["samples"][sample]["sample_name"]
-    sample_names.append(sample_name)
 
 ##### Target rules #####
 rule all:
     input:
-        expand("{library_name}/SV_calling/{sample_name}/{sample_name}.vcf", library_name = library_name, sample_name = sample_names)
+        expand("SV_calling/{sample_name}/variants.vcf", sample_name = sample_tab.sample_name)
 
 rule SV_calling:
     input: 
-        bam = '{library_name}/aligned/{sample_name}/{sample_name}.bam'
+        bam = 'aligned/{sample_name}/{sample_name}_sorted.bam'
     output:
-        vcf = 'SV_calling/{sample}/{sample}.vcf'
+        vcf = 'SV_calling/{sample_name}/variants.vcf'
     params: reference_path = reference_path,
+        dirname = "SV_calling/{sample_name}"
     conda: 
-        "../envs/svim_environment.yaml"
+        "envs/svim_environment.yaml"
     shell:
         """
-        svim alignment outputs/{wildcards.library_name}sv_calling/ {input.bam} {params.reference_path} 
+        svim alignment {params.dirname} {input.bam} {params.reference_path} 
         """
 
 #rule QC_after_SV_calling:
