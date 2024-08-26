@@ -11,10 +11,6 @@
     "outputs":[
       "SV_calling/{sample}/variants.vcf"
     ],
-    "report_index": "qc_reports/all_samples/nanopore_SV_qc.html",
-    "reports":[
-      "qc_reports/all_samples/nanopore_SV_qc.html"
-    ],
     "run_parameters": {
       "cpu": 30,
       "memory": 128
