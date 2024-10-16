@@ -20,14 +20,7 @@
     "entity_name",
     "sample_name"
   ],
-  "gui_params" : {
-    "primary": { 
-      "reference": {
-        "label": "Genomic Reference",
-        "type": "enum",
-        "default": ##INCLUDE:reference_info/default_reference.json##,
-        "list": ##INCLUDE:reference_info/reference2.json##
-      }
-    }
-  }
+  "requested_params": [
+    "reference"
+  ]
 }
