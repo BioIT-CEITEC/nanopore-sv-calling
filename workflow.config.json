@@ -22,5 +22,6 @@
   ],
   "requested_params": [
     "reference"
-  ]
+  ], 
+  "gui_params" : {}
 }
