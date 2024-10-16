@@ -11,10 +11,6 @@
     "outputs":[
       "SV_calling/{sample}/variants.vcf"
     ],
-    "report_index": "qc_reports/all_samples/nanopore_SV_qc.html",
-    "reports":[
-      "qc_reports/all_samples/nanopore_SV_qc.html"
-    ],
     "run_parameters": {
       "cpu": 30,
       "memory": 128
@@ -24,9 +20,14 @@
     "entity_name",
     "sample_name"
   ],
-  "requested_params": [
-    "reference"
-  ],
   "gui_params" : {
+    "primary": { 
+      "reference": {
+        "label": "Genomic Reference",
+        "type": "enum",
+        "default": ##INCLUDE:reference_info/default_reference.json##,
+        "list": ##INCLUDE:reference_info/reference2.json##
+      }
+    }
   }
 }
