@@ -20,6 +20,9 @@
     "entity_name",
     "sample_name"
   ],
+  "requested_params": [
+    "reference"
+  ],
   "gui_params" : {
   }
 }
