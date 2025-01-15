@@ -13,9 +13,9 @@ use rule * from BR as other_*
 config = BR.load_organism()
 
 # setting organism from reference
-f = open(os.path.join(GLOBAL_REF_PATH,"reference_info","reference2.json"),)
-reference_dict = json.load(f)
-f.close()
+# f = open(os.path.join(GLOBAL_REF_PATH,"reference_info","reference2.json"),)
+# reference_dict = json.load(f)
+# f.close()
 
 config["species_name"] = [organism_name for organism_name in reference_dict.keys() if isinstance(reference_dict[organism_name],dict) and config["reference"] in reference_dict[organism_name].keys()][0]
 config["organism"] = config["species_name"].split(" (")[0].lower().replace(" ","_")
@@ -37,7 +37,7 @@ rule SV_calling:
     input: 
         bam = 'aligned/{sample_name}/{sample_name}_sorted.bam'
     output:
-        vcf = 'SV_calling/{sample_name}/variants.vcf'
+        vcf = 'SV_calling/{sample_name}/{sample_name}_variants.vcf'
     params: reference_path = reference_path,
         dirname = "SV_calling/{sample_name}"
     conda: 
