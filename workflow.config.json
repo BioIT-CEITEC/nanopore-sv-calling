@@ -24,27 +24,5 @@
     "reference"
   ],
   "gui_params" : {
-<<<<<<< HEAD
-    "primary": { 
-      "organism": {
-        "label": "Organism",
-        "type": "enum",
-        "dynamicEnumName": "organism"
-      },
-      "assembly": {
-        "label": "Assembly",
-        "type": "enum",
-        "dynamicEnumName": "assembly",
-        "filters": {
-          "group": {
-            "param": "organism",
-            "type": "value",
-            "showGroupLabel": false
-          }
-        }
-      }
-    }
-=======
->>>>>>> 53f36a5dc763dee301b5cb2b8d5769f9ecdc7698
   }
 }
