@@ -20,7 +20,11 @@
     "entity_name",
     "sample_name"
   ],
+  "requested_params": [
+    "reference"
+  ],
   "gui_params" : {
+<<<<<<< HEAD
     "primary": { 
       "organism": {
         "label": "Organism",
@@ -40,5 +44,7 @@
         }
       }
     }
+=======
+>>>>>>> 53f36a5dc763dee301b5cb2b8d5769f9ecdc7698
   }
 }
