@@ -17,7 +17,7 @@ sample_tab = BR.load_sample()
 # Folders
 #
 #sample_tab = pd.DataFrame.from_dict(config["samples"],orient="index")
-reference_path = os.path.join(GLOBAL_REF_PATH,config["organism"], config["reference"], "seq", config["reference"] + ".fa")
+#reference_path = os.path.join(GLOBAL_REF_PATH,config["organism"], config["reference"], "seq", config["reference"] + ".fa")
 
 ##### Target rules #####
 rule all:
