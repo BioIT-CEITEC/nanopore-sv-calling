@@ -21,7 +21,8 @@
     "sample_name"
   ],
   "requested_params": [
-    "organism"
+    "organism", 
+    "assembly"
   ],
   "gui_params" : {
   }
