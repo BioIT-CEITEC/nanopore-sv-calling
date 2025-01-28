@@ -9,7 +9,7 @@
       "aligned/{sample}/{sample}_sorted.bam"
     ],
     "outputs":[
-      "SV_calling/{sample}/variants.vcf"
+      "SV_calling/{sample}/*"
     ],
     "run_parameters": {
       "cpu": 30,
