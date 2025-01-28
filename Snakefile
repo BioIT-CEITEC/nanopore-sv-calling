@@ -22,13 +22,13 @@ sample_tab = BR.load_sample()
 ##### Target rules #####
 rule all:
     input:
-        expand("SV_calling/{sample_name}/{sample_name}_variants.vcf", sample_name = sample_tab.sample_name)
+        expand("SV_calling/{sample_name}/variants.vcf", sample_name = sample_tab.sample_name)
 
 rule SV_calling:
     input: 
         bam = 'aligned/{sample_name}/{sample_name}_sorted.bam'
     output:
-        vcf = 'SV_calling/{sample_name}/{sample_name}_variants.vcf'
+        vcf = 'SV_calling/{sample_name}/variants.vcf'
     params: dirname = "SV_calling/{sample_name}",
         genome = config["organism_fasta"]
     conda: 
