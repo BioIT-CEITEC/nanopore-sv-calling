@@ -22,7 +22,7 @@ sample_tab = BR.load_sample()
 ##### Target rules #####
 rule all:
     input:
-        expand("SV_calling/{sample_name}/variants.vcf", sample_name = sample_tab.sample_name)
+        expand("SV_calling/{sample_name}/{sample_name}_variants.vcf", sample_name = sample_tab.sample_name)
 
 rule SV_calling:
     input: 
