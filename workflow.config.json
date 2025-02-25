@@ -5,7 +5,6 @@
     "label":"Structural variant calling",
     "type":"structural_variant_calling",
     "inputs":[
-      "aligned/{sample}/{sample}.bam",
       "aligned/{sample}/{sample}_sorted.bam"
     ],
     "outputs":[
