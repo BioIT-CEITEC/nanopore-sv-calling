@@ -1,0 +1,17 @@
+name: SNV_calling
+channels:
+  - bioconda
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.8  # Recommended version for NanoCaller
+  - numpy=1.18  # Prevents GLIBC version conflicts
+  - scipy
+  - pandas
+  - bedtools
+  - htslib
+  - samtools
+  - bcftools
+  - tensorflow=2.4  # Avoids CUDA issues
+  - nanocaller
+  
